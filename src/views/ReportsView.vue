@@ -3,16 +3,15 @@
   <div class="reports">
     <h1>Relatórios</h1>
 
-
     <div id="app">
       <DataTable
         :value="customers"
         :paginator="true"
-        :rows="10"
+        :rows="5"
         paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-        :rowsPerPageOptions="[10, 20, 50]"
+        :rowsPerPageOptions="[5, 10, 20]"
         responsiveLayout="scroll"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords}"
       >
         <Column field="id" header="Id"></Column>
         <Column field="first_name" header="Nome"></Column>
@@ -51,12 +50,10 @@ export default {
     this.customerService = new CustomerService();
   },
   mounted() {
-    this.customerService
-      .getCustomersLarge()
-      .then(data => {
-            this.customers = data;
-        });
-      //.then((res) => (this.customers = res));
+    this.customerService.getCustomersLarge().then((data) => {
+      this.customers = data;
+    });
+    //.then((res) => (this.customers = res));
   },
 };
 </script>

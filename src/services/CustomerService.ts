@@ -14,20 +14,24 @@
 
     async getCustomersLarge() {
 
-        const response = await fetch("http://localhost/customer/api/1/5/10");
+        const response = await fetch("http://localhost/customer/api/1/1/999999999");
         const data = await response.json();
         this.data = data;        
 
         return this.data;
     }
 
-    async created() {
-        // GET request using fetch with async/await
-        const response = await fetch("http://localhost/customer/api/1/5/10");
-        const data = await response.json();
-        this.totalVuePackages = data;
-        console.log(this.totalVuePackages);
-      }
+    async upload() {
+    // POST request using fetch with async/await
+    const requestOptions = {
+        method: "POST",
+        headers: { 'Content-Type': 'multipart/form-data' },
+        body: JSON.stringify({ title: "Vue POST Request Example" })
+    };
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", requestOptions);
+    const data = await response.json();
+    this.postId = data.id;
+    }
 
     getCustomersXLarge() {
         return fetch('demo/data/customers-xlarge.json').then(res => res.json())
